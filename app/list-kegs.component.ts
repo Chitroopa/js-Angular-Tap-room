@@ -11,6 +11,7 @@ import { Keg } from './keg.model';
       <h5>Brand: {{currentKeg.brand}}</h5>
       <h5>price: {{sign}}{{currentKeg.price}}</h5>
       <h5>Alcohol Content: {{currentKeg.alcoholContent}}%</h5>
+      <a href='#' (click)="editKegButton(currentKeg)">edit</a>
     </div>
   </div>
   `
@@ -18,6 +19,10 @@ import { Keg } from './keg.model';
 
 export class ListKegs {
   @Input() kegList: Keg[];
+  @Output() editKeg = new EventEmitter();
   sign: string = "$";
 
+  editKegButton(kegToEdit: Keg) {
+    this.editKeg.emit(kegToEdit);
+  }
 }
