@@ -13,6 +13,7 @@ import { Keg } from './keg.model';
       <h5 *ngIf="currentKeg.soldOut" class="sold-out">**Sold Out**</h5>
       <h5>price: {{sign}}{{currentKeg.price}}</h5>
       <h5 [class]="alcoholStyling(currentKeg)">Alcohol Content: {{currentKeg.alcoholContent}}%</h5>
+      <h5>On Sale: {{currentKeg.onSale}}</h5>
       <a href='#' (click)="sellPint(currentKeg)">Sell Pint</a>
       <a href='#' (click)="editKegButton(currentKeg)" >edit</a>
     </div>

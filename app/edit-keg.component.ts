@@ -3,7 +3,6 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'edit-keg',
   template: `
-
   <div class="container">
     <div *ngIf="kegList">
     <div>
