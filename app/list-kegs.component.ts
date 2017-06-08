@@ -6,7 +6,13 @@ import { Keg } from './keg.model';
   <div class="container">
     <h1>list-kegs</h1>
     <br>
-    <div [class]="priceColoring(currentKeg)"*ngFor="let currentKeg of kegList" >
+    <select (change)="onChange($event.target.value)">
+      <option value="All Items" selected="selected">All Items</option>
+      <option value="on sale">Sale Items</option>
+      <option value="non-sale">Non-sale Items</option>
+    </select>
+    <br>
+    <div [class]="priceColoring(currentKeg)"*ngFor="let currentKeg of kegList | sale:filterBySale" >
       <h3>{{currentKeg.name}}</h3>
       <h5>Brand: {{currentKeg.brand}}</h5>
       <h5 [class]="pintsLeftColor(currentKeg)">Pints Left: {{currentKeg.pints}}</h5>
@@ -25,6 +31,13 @@ export class ListKegs {
   @Input() kegList: Keg[];
   @Output() editKeg = new EventEmitter();
   sign: string = "$";
+
+  filterBySale: string = "All Items";
+
+  onChange(option){
+    this.filterBySale = option;
+  }
+
 
   editKegButton(kegToEdit: Keg) {
     this.editKeg.emit(kegToEdit);
@@ -66,7 +79,7 @@ export class ListKegs {
     }
   }
   alcoholStyling(currentKeg){
-    if(currentKeg.alcoholContent > 5){
+    if(currentKeg.alcoholContent < 5){
       return "high-alcohol";
     } else{
       return "low-alcohol";

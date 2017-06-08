@@ -15,8 +15,8 @@ import { Keg } from './keg.model';
      <label>Enter Alcohol Content:</label>
      <input #newAlcoholContent>
      <select #newOnSale>
-        <option value="true">On Sale</option>
-        <option value="false">Not on sale</option>
+        <option value=true>On Sale</option>
+        <option value=false>Not on sale</option>
       </select>
      <button (click)="submitForm(newName.value, newBrand.value, newPrice.value, newAlcoholContent.value, newOnSale.value); newName.value=''; newBrand.value=''; newPrice.value=''; newAlcoholContent.value='';">Add</button>
    </div>
@@ -26,9 +26,21 @@ import { Keg } from './keg.model';
 
 export class NewKeg {
   @Output() newKeg = new EventEmitter();
+  onSaleValue: boolean;
 
-  submitForm(name: string, brand:string, price: number, alcoholContent: number, onSale: boolean){
-    var newKegToAdd: Keg = new Keg(name, brand, price, alcoholContent, onSale);
+  submitForm(name: string, brand:string, price: number, alcoholContent: number, onSale: string){
+
+    if (onSale === "true")
+    {
+      this.onSaleValue = true;
+    }
+    else
+    {
+      this.onSaleValue = false;
+    }
+
+    var newKegToAdd: Keg = new Keg(name, brand, price, alcoholContent, this.onSaleValue);
+    console.log(newKegToAdd);
     this.newKeg.emit(newKegToAdd);
   }
 }
