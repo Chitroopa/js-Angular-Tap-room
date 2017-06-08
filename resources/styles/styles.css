@@ -1,3 +1,23 @@
 h1 {
   color: blue;
 }
+.sold-out {
+  color: red;
+}
+.bg-low {
+  background-color: red;
+}
+.bg-medium {
+  background-color: yellow;
+}
+.bg-full {
+  background-color: lightgreen;
+}
+.high-alcohol{
+  font-weight: bold;
+  color: red;
+}
+.low-alcohol{
+  font-weight: bold;
+  color: blue;
+}

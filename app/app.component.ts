@@ -8,7 +8,7 @@ import { Keg } from './keg.model';
   <div class="container">
     <h1>Tap Room</h1>
     <list-kegs [kegList]="kegs" (editKeg)="editKeg($event)"></list-kegs>
-    <edit-keg [kegList]="selectedKeg"></edit-keg>
+    <edit-keg [kegList]="selectedKeg" (doneButtonClickedSender)="finishedEditing()"></edit-keg>
     <new-keg (newKeg)="newKeg($event)"></new-keg>
   </div>
   `
@@ -17,8 +17,8 @@ import { Keg } from './keg.model';
 export class AppComponent {
   selectedKeg = null;
   kegs: Keg[] = [
-    new Keg('Hop Venom', 'Boneyard', 8.4, 9),
-    new Keg('Trickester', 'Black Raven', 8.4, 8)
+    new Keg('Hop Venom', 'Boneyard', 4.19, 9),
+    new Keg('Trickester', 'Black Raven', 8.4, 2)
   ];
 
   editKeg(clickedKeg) {
@@ -28,5 +28,9 @@ export class AppComponent {
 
   newKeg(newKegToAdd) {
     this.kegs.push(newKegToAdd);
+  }
+
+  finishedEditing() {
+    this.selectedKeg = null;
   }
 }
